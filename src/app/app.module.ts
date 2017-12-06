@@ -1,18 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
-
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {PanelComponent} from './panel/panel.component';
+import {WidgetComponent} from './widget/widget.component';
+import {CallService} from './call.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PanelComponent,
+    WidgetComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, FormsModule, HttpModule
   ],
-  providers: [],
+  providers: [CallService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

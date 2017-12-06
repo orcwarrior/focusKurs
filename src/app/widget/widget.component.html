@@ -1,0 +1,11 @@
+<div class="header">
+  Zadzwonimy do Ciebie w ciagu 26 sekund.
+</div>
+<label class="formlabel" for="form-number">
+  Wprowadź numer
+</label>
+<input [(ngModel)]="numer" [ngClass]="{error: !isValidNumber()}"
+       class="form-number" id="form-number" />
+<div class="call-button" (click)="call()">
+  Zadzwoń teraz
+</div>
