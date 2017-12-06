@@ -16,5 +16,9 @@ export class PanelComponent implements OnInit {
 }
 
 @NgModule({
-  imports:      [FormsModule]
+  imports:      [FormsModule],
+  declarations: [
+    SignupComponent,
+    LoginComponent
+  ]
 })
