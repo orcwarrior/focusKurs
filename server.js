@@ -18,10 +18,21 @@ app.listen(3000, function () {
   console.log('Utworzono serwis dla focusKurs na porcie 3000!')
 });
 
-app.post('/call', function (req, res) {
+let bridge = null;
+app.post('/call',function (req, res) {
   console.log('Call service called!')
   console.log(req.body)
   console.log('Nawiazywanie polaczenia miedzy numerami: ' + req.body.first_number + ', ' + req.body.second_number + '...');
   dialer.call(req.body.first_number, req.body.second_number)
+    .then(function(_bridge) {
+      bridge = _bridge;
+    })
   res.json({status: 'initiated', msg: 'Nawiazywanie polaczenia miedzy numerami: ' + req.body.first_number + ', ' + req.body.second_number + '...'})
+});
+
+app.get('/status',function (req, res) {
+  let id = req.query.id;
+  let status = await bridge.getStatus();
+  res.json({success: true, status: status})
+  console.log('Zapytanie o status: ' + status);
 });
