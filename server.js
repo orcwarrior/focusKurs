@@ -18,7 +18,7 @@ app.listen(3000, function () {
   console.log('Utworzono serwis dla focusKurs na porcie 3000!')
 });
 
-let bridge = null;
+var bridge = null;
 app.post('/call',function (req, res) {
   console.log('Call service called!')
   console.log(req.body)
@@ -30,9 +30,9 @@ app.post('/call',function (req, res) {
   res.json({status: 'initiated', msg: 'Nawiazywanie polaczenia miedzy numerami: ' + req.body.first_number + ', ' + req.body.second_number + '...'})
 });
 
-app.get('/status',function (req, res) {
+app.get('/status',async function (req, res) {
   let id = req.query.id;
-  let status = await bridge.getStatus();
+  let status = await bridge.getStatus()
   res.json({success: true, status: status})
-  console.log('Zapytanie o status: ' + status);
+  console.log('Zapytanie o status: ' + status)
 });
