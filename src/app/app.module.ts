@@ -11,6 +11,7 @@ import { RingingComponent } from './ringing/ringing.component';
 import { CallComponent } from './call/call.component';
 import { FinishedComponent } from './finished/finished.component';
 
+import { Routes, RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,13 @@ import { FinishedComponent } from './finished/finished.component';
     FinishedComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpModule
+    BrowserModule, FormsModule, HttpModule,
+    RouterModule.forRoot([
+      { path: '', component: WidgetComponent },
+      { path: 'ringing/:number', component: RingingComponent },
+      { path: 'call', component: CallComponent }
+    ])
+
   ],
   providers: [CallService],
   bootstrap: [AppComponent]
