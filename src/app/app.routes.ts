@@ -3,14 +3,13 @@ import { CallComponent } from './call/call.component';
 import { FinishedComponent } from './finished/finished.component';
 import {WidgetComponent} from './widget/widget.component';
 
-import {Routes, RouterModule} from '@angular/router';
 
-const AppRoutes = RouterModule.forRoot([
+const AppRoutes = [
   { path: '', component: WidgetComponent },
-  { path: 'ringing/:number', component: RingingComponent },
-  { path: 'finished/:number', component: FinishedComponent },
+  { path: 'ringing/:numer', component: RingingComponent },
+  { path: 'finished/:numer', component: FinishedComponent },
   { path: 'call', component: CallComponent }
-]);
+];
 
 export {AppRoutes};
 
