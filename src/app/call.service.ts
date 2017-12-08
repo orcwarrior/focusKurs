@@ -16,11 +16,13 @@ export class CallService {
   constructor(private http: Http) {
   }
 
-  placeCall(number: string) {
+  // Metoda place call od teraz zwraca obietnice (Promise)
+  // stat składnia nazwa_funkcji(parametry) : typ_zwracanej_wartosci
+  placeCall(number: string): Promise {
     const postData = JSON.stringify({first_number: '500127424', second_number: number})
     const options = this._generateRequestOptions();
     // let headers ...
-    this.http.post(this.apiUrl + "/call", postData, options)
+    return this.http.post(this.apiUrl + "/call", postData, options)
       .toPromise() // obietnica / Promise
       .then(function (response) {
         console.log('Response received:')
