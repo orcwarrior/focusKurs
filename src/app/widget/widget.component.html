@@ -5,7 +5,8 @@
   Wprowadź numer
 </label>
 <input [(ngModel)]="numer" [ngClass]="{error: !isValidNumber()}"
-       class="form-number" id="form-number" />
-<a class="call-button" routerLink="ringing/{{numer}}" >
+       class="form-number" id="form-number"/>
+
+<button class="call-button" routerLink="ringing/{{numer}}" [disabled]="!isValidNumber()">
   Zadzwoń teraz
-</a>
+</button>
