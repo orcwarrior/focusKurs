@@ -1,3 +1,7 @@
-<p>
-  ringing works!
-</p>
+<div class="header">
+  Wybieranie numeru {{numer}}...
+</div>
+
+<div *ngIf="status" class="call-button" (click)="call()">
+  Status polaczenia: {{status}}
+</div>
