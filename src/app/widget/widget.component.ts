@@ -11,10 +11,10 @@ export class WidgetComponent implements OnInit {
   numer: string;
   validator = /^[0-9]{9}$/
 
-  constructor(private callService: CallService) { }
+  constructor() { }
   call() {
     if (this.isValidNumber()) {
-      this.callService.placeCall(this.numer);
+      // this.callService.placeCall(this.numer);
     }
   }
   isValidNumber() {

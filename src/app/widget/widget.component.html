@@ -6,6 +6,6 @@
 </label>
 <input [(ngModel)]="numer" [ngClass]="{error: !isValidNumber()}"
        class="form-number" id="form-number" />
-<div class="call-button" (click)="call()">
+<a class="call-button" routerLink="ringing/{{numer}}" >
   Zadzwoń teraz
-</div>
+</a>
