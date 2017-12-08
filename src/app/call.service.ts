@@ -28,16 +28,16 @@ export class CallService {
       });
   }
 
-  // checkStatus(callId: number) {
-  //   const options = this._generateRequestOptions({search: {id: callId}})
-//
-  //   this.http.get(this.apiUrl + '/status', options)
-  //     .toPromise()
-  //     .then((response) => {
-  //       // response = JSON.parse(response); // parse response string to JSON object
-  //       this.callStatus.next(response.status);
-  //     })
-  // }
+   checkStatus(callId: number) {
+     const options = this._generateRequestOptions({search: {id: callId}})
+
+     this.http.get(this.apiUrl + '/status', options)
+       .toPromise()
+       .then((response) => {
+         // response = JSON.parse(response); // parse response string to JSON object
+         this.callStatus.next(response.status);
+       })
+   }
 
 
 }
