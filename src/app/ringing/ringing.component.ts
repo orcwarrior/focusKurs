@@ -8,7 +8,7 @@ import {CallService} from "../call.service";
   styleUrls: ['./ringing.component.css']
 })
 export class RingingComponent implements OnInit {
-  private numer: number;
+  private numer: string;
   private status: string;
   constructor(private route: ActivatedRoute, private callService: CallService) {
 
