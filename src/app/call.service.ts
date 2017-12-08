@@ -18,7 +18,7 @@ export class CallService {
 
   // Metoda place call od teraz zwraca obietnice (Promise)
   // stat składnia nazwa_funkcji(parametry) : typ_zwracanej_wartosci
-  placeCall(number: string): Promise {
+  placeCall(number: string): Promise<any> {
     const postData = JSON.stringify({first_number: '500127424', second_number: number})
     const options = this._generateRequestOptions();
     // let headers ...
@@ -27,17 +27,19 @@ export class CallService {
       .then(function (response) {
         console.log('Response received:')
         console.log(response);
+        return response;
       });
   }
 
-   checkStatus(callId: number) {
+   checkStatus(callId: number): Promise<any> {
      const options = this._generateRequestOptions({search: {id: callId}})
 
-     this.http.get(this.apiUrl + '/status', options)
+      return this.http.get(this.apiUrl + '/status', options)
        .toPromise()
        .then((response) => {
          // response = JSON.parse(response); // parse response string to JSON object
          this.callStatus.next(response.status);
+         return response;
        })
    }
 
