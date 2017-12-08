@@ -23,24 +23,27 @@ export class RingingComponent implements OnInit {
     return this.statusMsgDictionary[status];
   }
   private _watchCallStatus() {
-    let self = this;
+    var self = this;
     let callStatusInterval = setInterval(function() {
         self.callService.checkStatus(self.numer)
           .then(function (response) {
             self.status = self._getStatusMsg(response.status);
             if (self.status === 'fail' || self.status === 'ended')
+              clearInterval(callStatusInterval); // Usuniecie odpytywania o status kiedy poł. zakonczono
           });
-    })
+    }, 1000);
   }
   ngOnInit() {
     // Należy zachować referencje do this, jako że w wywołaniu funkcji
     // assignNumerFromParams kontekst this ulegnie zmianie i nie będzie wskazywało
     // na nasz komponent do którego chcemy przypisać pole numer.
-    let self = this;
+    var self = this;
     this.route.params.subscribe(function assignNumerFromParams(params) {
       self.numer = params.numer;
       self.callService.placeCall(self.numer)
-        .then(this._watchCallStatus)
+        .then(function() {
+          self._watchCallStatus();
+        })
     })
   }
 
