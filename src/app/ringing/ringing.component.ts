@@ -10,12 +10,27 @@ import {CallService} from "../call.service";
 export class RingingComponent implements OnInit {
   private numer: string;
   private status: string;
+  private statusMsgDictionary = {
+    'call' : "Połaczenie wydzwanianie",
+    'fail' : "Połaczenie nieudane"
+  }
   constructor(private route: ActivatedRoute, private callService: CallService) {
 
   }
-  updateCallStatus() {
-
-    this.status = "Nowy status pobrany z serwera na 3000...";
+  _getStatusMsg(status) {
+    // Sprytnie odczytujemy wiadomość wyświetlana dla użytkownika wg.
+    // statusu przekazanego do tej metody.
+    return this.statusMsgDictionary[status];
+  }
+  private _watchCallStatus() {
+    let self = this;
+    let callStatusInterval = setInterval(function() {
+        self.callService.checkStatus(self.numer)
+          .then(function (response) {
+            self.status = self._getStatusMsg(response.status);
+            if (self.status === 'fail' || self.status === 'ended')
+          });
+    })
   }
   ngOnInit() {
     // Należy zachować referencje do this, jako że w wywołaniu funkcji
@@ -24,7 +39,8 @@ export class RingingComponent implements OnInit {
     let self = this;
     this.route.params.subscribe(function assignNumerFromParams(params) {
       self.numer = params.numer;
-      self.callService.placeCall(self.numer);
+      self.callService.placeCall(self.numer)
+        .then(this._watchCallStatus)
     })
   }
 
