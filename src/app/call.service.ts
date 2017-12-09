@@ -13,6 +13,11 @@ export class CallService {
     return options;
   }
 
+  _parseResponseBody(response) {
+    response._body = JSON.parse(response._body);
+    return response;
+  }
+
   constructor(private http: Http) {
   }
 
@@ -21,27 +26,23 @@ export class CallService {
   placeCall(number: string): Promise<any> {
     const postData = JSON.stringify({first_number: '500127424', second_number: number})
     const options = this._generateRequestOptions();
-    // let headers ...
+    
     return this.http.post(this.apiUrl + "/call", postData, options)
       .toPromise() // obietnica / Promise
       .then(function (response) {
-        console.log('Response received:')
-        console.log(response);
         return response;
       });
   }
 
-   checkStatus(callId: number): Promise<any> {
-     const options = this._generateRequestOptions({search: {id: callId}})
-
-      return this.http.get(this.apiUrl + '/status', options)
-       .toPromise()
-       .then((response) => {
-         // response = JSON.parse(response); // parse response string to JSON object
-         this.callStatus.next(response.status);
-         return response;
-       })
-   }
+  checkStatus(numer: string): Promise<any> {
+    const options = this._generateRequestOptions();
+    let self = this;
+    return this.http.get(this.apiUrl + '/status/' + numer, options)
+      .toPromise()
+      .then(function (response) {
+        return self._parseResponseBody(response);
+      })
+  }
 
 
 }
