@@ -8,8 +8,6 @@ import {PanelComponent} from './panel/panel.component';
 import {WidgetComponent} from './widget/widget.component';
 import {CallService} from './call.service';
 import {RingingComponent} from './ringing/ringing.component';
-import {CallComponent} from './call/call.component';
-import {FinishedComponent} from './finished/finished.component';
 
 import {Routes, RouterModule} from '@angular/router';
 import {AppRoutes} from './app.routes';
@@ -20,8 +18,6 @@ import {AppRoutes} from './app.routes';
     PanelComponent,
     WidgetComponent,
     RingingComponent,
-    CallComponent,
-    FinishedComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule,
