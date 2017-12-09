@@ -33,17 +33,17 @@ export class RingingComponent implements OnInit {
   }
 
   private _watchCallStatus() {
-    var self = this;
-    let callStatusInterval = setInterval(function () {
-      self.callService.checkStatus(self.numer)
-        .then(function (response) {
-          self.status = response._body.status;
-          self.statusMsg = self._getStatusMsg(response._body.status);
-          if (self.isCallEnded()) {
-            // Usuniecie odpytywania o status kiedy poł. zakonczono
-            clearInterval(callStatusInterval);
+    let callStatusInterval = setInterval(() => {
+      this.callService.checkStatus(this.numer)
+        .then((response) => {
+            this.status = response.body.status;
+            this.statusMsg = this._getStatusMsg(response.body.status);
+            if (this.isCallEnded()) {
+              // Usuniecie odpytywania o status kiedy poł. zakonczono
+              clearInterval(callStatusInterval);
+            }
           }
-        });
+        )
     }, 1000);
   }
 
@@ -60,15 +60,11 @@ export class RingingComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Należy zachować referencje do this, jako że w wywołaniu funkcji
-    // assignNumerFromParams kontekst this ulegnie zmianie i nie będzie wskazywało
-    // na nasz komponent do którego chcemy przypisać pole numer.
-    var self = this;
-    this.route.params.subscribe(function assignNumerFromParams(params) {
-      self.numer = params.numer;
-      self.callService.placeCall(self.numer)
-        .then(function () {
-          self._watchCallStatus();
+    this.route.params.subscribe((params) => {
+      this.numer = params.numer;
+      this.callService.placeCall(this.numer)
+        .then(() => {
+          this._watchCallStatus();
         })
     })
   }
