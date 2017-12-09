@@ -1,0 +1,12 @@
+.close-call-button {
+  width: 300px;
+  height: 75px;
+  vertical-align: middle;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 75px;
+  background: #8f7f3d;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 20px;
+}
