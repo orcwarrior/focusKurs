@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CallService} from "../call.service";
+import  {CallStatus} from "../call-status";
 
 @Component({
   selector: 'app-ringing',
@@ -11,25 +12,15 @@ export class RingingComponent implements OnInit {
   private numer: string;
   private status: string;
   private statusMsg: string;
-  private statusMsgDictionary = {
-    'RINGING': 'Trwa wybieranie numeru...',
-    'CONNECTED': 'Telefon dzwoni...',
-    'ANSWERED': 'Połączenie nawiązane!',
-    'FAILED': 'Błąd w nawiązywaniu połączenia!',
-    'NO ANSWER': 'Połączenie nieodebrane!',
-    'BUSY': 'Połączenie odrzucone!',
-    // Dodatkowe błedy z poziomu node:
-    'NODE: CALL NOT FOUND': 'Ządane połączenie nieodnalezione (API niezarejestrowało połączenia z tym numerem).'
-  };
 
-  constructor(private route: ActivatedRoute, private callService: CallService) {
+  constructor(private route: ActivatedRoute, private callService: CallService, private callStatus: CallStatus) {
 
   }
 
   _getStatusMsg(status) {
     // Sprytnie odczytujemy wiadomość wyświetlana dla użytkownika wg.
     // statusu przekazanego do tej metody.
-    return this.statusMsgDictionary[status];
+    return this.callStatus.getStatusMsg(status);
   }
 
   private _watchCallStatus() {
