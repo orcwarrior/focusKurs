@@ -13,22 +13,33 @@ export class RingingComponent implements OnInit {
   private status: string;
   private statusMsg: string;
 
-  constructor(private route: ActivatedRoute, private callService: CallService, private callStatus: CallStatus) {
+  constructor(private route: ActivatedRoute, private callService: CallService, private callStatus: CallStatus) { }
 
+
+  public isCallEnded() {
+    return this.status === 'FAILED'
+      || this.status === 'NO ANSWER'
+      || this.status === 'BUSY'
+      || this.status === 'NODE: CALL NOT FOUND';
   }
 
-  _getStatusMsg(status) {
-    // Sprytnie odczytujemy wiadomość wyświetlana dla użytkownika wg.
-    // statusu przekazanego do tej metody.
-    return this.callStatus.getStatusMsg(status);
+  public ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.numer = params.numer;
+      this.callService.placeCall(this.numer)
+        .then(() => {
+          this._watchCallStatus();
+        });
+    });
   }
 
+  /* private methods */
   private _watchCallStatus() {
     const callStatusInterval = setInterval(() => {
       this.callService.checkStatus(this.numer)
         .then((response) => {
             this.status = response.body.status;
-            this.statusMsg = this._getStatusMsg(response.body.status);
+            this.statusMsg = this.callStatus.getStatusMsg(this.status);
             if (this.isCallEnded()) {
               // Usuniecie odpytywania o status kiedy poł. zakonczono
               clearInterval(callStatusInterval);
@@ -38,26 +49,5 @@ export class RingingComponent implements OnInit {
     }, 1000);
   }
 
-  isCallEnded() {
-    if (this.status === 'FAILED'
-      || this.status === 'NO ANSWER'
-      || this.status === 'BUSY'
-      || this.status === 'NODE: CALL NOT FOUND') {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
-  ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.numer = params.numer;
-      this.callService.placeCall(this.numer)
-        .then(() => {
-          this._watchCallStatus();
-        });
-    });
-  }
 
 }
