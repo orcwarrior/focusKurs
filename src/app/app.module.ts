@@ -8,7 +8,7 @@ import {PanelComponent} from './panel/panel.component';
 import {WidgetComponent} from './widget/widget.component';
 import {CallService} from './call.service';
 import {RingingComponent} from './ringing/ringing.component';
-
+import {CallStatus} from "./call-status";
 import {Routes, RouterModule} from '@angular/router';
 import {AppRoutes} from './app.routes';
 
@@ -23,7 +23,7 @@ import {AppRoutes} from './app.routes';
     BrowserModule, FormsModule, HttpModule,
     RouterModule.forRoot(AppRoutes)
   ],
-  providers: [CallService],
+  providers: [CallService, CallStatus],
   bootstrap: [AppComponent]
 })
 export class AppModule {

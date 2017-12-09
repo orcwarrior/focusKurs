@@ -1,5 +1,8 @@
+import {Injectable} from "@angular/core";
+
+@Injectable()
 export class CallStatus {
-  private static statusMsgs = {
+  private statusMsgs: Object = {
     'RINGING': 'Trwa wybieranie numeru...',
     'CONNECTED': 'Telefon dzwoni...',
     'ANSWERED': 'Połączenie nawiązane!',
@@ -12,7 +15,7 @@ export class CallStatus {
 
   constructor() { }
 
-  getStatusMsg(status: string) {
-    return CallStatus.statusMsgs(status);
+  public getStatusMsg(status: string) {
+    return this.statusMsgs[status];
   }
 }

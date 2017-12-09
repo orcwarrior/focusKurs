@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {CallService} from "../call.service";
-import  {CallStatus} from "../call-status";
+import {CallService} from '../call.service';
+import  {CallStatus} from '../call-status';
 
 @Component({
   selector: 'app-ringing',
@@ -24,7 +24,7 @@ export class RingingComponent implements OnInit {
   }
 
   private _watchCallStatus() {
-    let callStatusInterval = setInterval(() => {
+    const callStatusInterval = setInterval(() => {
       this.callService.checkStatus(this.numer)
         .then((response) => {
             this.status = response.body.status;
@@ -34,7 +34,7 @@ export class RingingComponent implements OnInit {
               clearInterval(callStatusInterval);
             }
           }
-        )
+        );
     }, 1000);
   }
 
@@ -56,8 +56,8 @@ export class RingingComponent implements OnInit {
       this.callService.placeCall(this.numer)
         .then(() => {
           this._watchCallStatus();
-        })
-    })
+        });
+    });
   }
 
 }
