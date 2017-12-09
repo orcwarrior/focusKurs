@@ -1,20 +1,19 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 
+// TODO: Rename to something more like ApiService
 @Injectable()
 export class CallService {
+  // URLs:
   private apiBaseUrl = 'http://localhost:3000';
   private apiServicesUrls = {
     call: this.apiBaseUrl + '/call',
     status: (phoneNumber) => this.apiBaseUrl + `/status/${phoneNumber}`
   };
 
-  private callStatus = null;
+  constructor(private http: Http) {}
 
-  constructor(private http: Http) {
-  }
-
-  placeCall(number: string): Promise<any> {
+  public placeCall(number: string): Promise<any> {
     const postData = JSON.stringify({first_number: '500127424', second_number: number});
     const options = this._generateRequestOptions();
 
@@ -23,7 +22,7 @@ export class CallService {
       .then(this._parseResponseBody);
   }
 
-  checkStatus(numer: string): Promise<any> {
+  public checkStatus(numer: string): Promise<any> {
     const options = this._generateRequestOptions();
     const self = this;
     return this.http.get(this.apiServicesUrls.status(numer), options)
@@ -44,6 +43,4 @@ export class CallService {
     parsedResponse.body = JSON.parse(response._body); // _body -> body zamierzone
     return parsedResponse;
   }
-
-
 }
