@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 
 let app = express();
 let c = {
-  login: '10641', password: '3578', url: 'https://uni-call.fcc-online.pl',
-  num1: '500127424', num2: '503657892'
+  login: 'XXXXX', password: 'XXXX', url: 'https://uni-call.fcc-online.pl',
+  num1: '123456789', num2: '123456789'
 };
 let dialer = new Dialer(new Connector(c.url, c.login, c.password));
 
