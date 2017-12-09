@@ -7,7 +7,7 @@
   bottom: 0;
   left: 0;
   margin: auto;
-  background: rgb(255, 204, 0);
+  background: #FFCC00;
   border-radius: 20px;
   box-sizing: border-box;
   padding: 20px;
@@ -88,5 +88,5 @@
 
 .error {
   border: 1px solid #FF0000;
-  background: rgb(255,170,170)
+  background: #FFAAAA;
 }
