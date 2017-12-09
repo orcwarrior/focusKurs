@@ -3,5 +3,9 @@
 </div>
 
 <div *ngIf="status" class="call-button" (click)="call()">
-  Status polaczenia: {{status}}
+  Status polaczenia: {{statusMsg}}
 </div>
+
+<button class="close-call-button" routerLink="/" *ngIf="isCallEnded()">
+  Zakończ połączenie
+</button>
