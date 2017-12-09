@@ -1,5 +1,5 @@
 # FocusKurs
-Projekt bazowy utworzony dla kursu org. przez Focus Telecom, główne założenia tej wersji.
+Projekt bazowy utworzony dla kursu org. przez Focus Telecom, główne założenia tej wersji:
 * Możliwe ograniczenie używania wersji ES5 Javascript.
 * Możliwe ograniczenie wykorzystania biblioteki RxJS.
 
