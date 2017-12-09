@@ -14,8 +14,9 @@ export class CallService {
   }
 
   _parseResponseBody(response) {
-    response._body = JSON.parse(response._body);
-    return response;
+    let parsedResponse = Object.assign({}, response);
+    parsedResponse.body = JSON.parse(response._body); // _body -> body zamierzone
+    return parsedResponse;
   }
 
   constructor(private http: Http) {
@@ -26,7 +27,7 @@ export class CallService {
   placeCall(number: string): Promise<any> {
     const postData = JSON.stringify({first_number: '500127424', second_number: number})
     const options = this._generateRequestOptions();
-    
+
     return this.http.post(this.apiUrl + "/call", postData, options)
       .toPromise() // obietnica / Promise
       .then(function (response) {
