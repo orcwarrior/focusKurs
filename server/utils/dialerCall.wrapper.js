@@ -18,7 +18,7 @@ class dialerCallWrapper {
     this.id = getDialerIdByPhoneNumbers(phoneNumber1, phoneNumber2);
     this.phoneNumbers[0] = phoneNumber1;
     this.phoneNumbers[1] = phoneNumber2;
-    // Binding this to fake private method:
+
     this.promise = this.initializeCall();
   }
 
