@@ -15,7 +15,10 @@ export class CallStatus {
 
   constructor() { }
 
-  public getStatusMsg(status: string) {
+  public getCallStatusMsg(status: string) {
     return this.statusMsgs[status];
+  }
+  public getUnsucessfulCallStatuses(): Array<string> {
+    return ['FAILED', 'NO ANSWER', 'BUSY', 'NODE: CALL NOT FOUND'];
   }
 }
