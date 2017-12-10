@@ -1,9 +1,13 @@
 <div class="header">
-  <h2>  Wybieranie numeru {{numer}}...</h2>
+  <h2> Wybieranie numeru {{numer}}...</h2>
 </div>
 
-<div *ngIf="status" class="call-button" (click)="call()">
-  Status polaczenia: {{statusMsg}}
+<div *ngIf="userCall.status || otherCall.status" class="call-button" (click)="call()">
+  Statusy połączeń:
+  <p>
+    Uzytkownik: {{userCall.status}} / {{userCall.msg}} <br/>
+    Obsługa: {{otherCall.status}} / {{otherCall.msg}} <br/>
+  </p>
 </div>
 
 <button class="close-call-button" routerLink="/" *ngIf="isCallEnded()">

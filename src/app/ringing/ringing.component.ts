@@ -1,35 +1,34 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CallService} from '../call.service';
-import  {CallStatus} from '../call-status';
+import {CallStatus} from '../call-status';
+
+const statusCheckIntervalMS = 1000;
 
 @Component({
   selector: 'app-ringing',
   templateUrl: './ringing.component.html',
   styleUrls: ['./ringing.component.css']
 })
+
 export class RingingComponent implements OnInit {
   private numer: string;
-  private status: string;
-  private statusMsg: string;
+  private userCall = {status: null, msg: null};
+  private otherCall = {status: null, msg: null};
 
-  constructor(private route: ActivatedRoute, private callService: CallService, private callStatus: CallStatus) { }
-
+  constructor(private route: ActivatedRoute, private callService: CallService, private callStatus: CallStatus) {
+  }
 
   public isCallEnded() {
-    return this.status === 'FAILED'
-      || this.status === 'NO ANSWER'
-      || this.status === 'BUSY'
-      || this.status === 'NODE: CALL NOT FOUND';
+    return this.callStatus.getUnsucessfulCallStatuses()
+      .some((unsucessStatus) => unsucessStatus === this.userCall.status || unsucessStatus === this.otherCall.status);
   }
 
   public ngOnInit() {
     this.route.params.subscribe((params) => {
       this.numer = params.numer;
       this.callService.placeCall(this.numer)
-        .then(() => {
-          this._watchCallStatus();
-        });
+        .then(() => this._watchCallStatus());
     });
   }
 
@@ -38,15 +37,19 @@ export class RingingComponent implements OnInit {
     const callStatusInterval = setInterval(() => {
       this.callService.checkStatus(this.numer)
         .then((response) => {
-            this.status = response.body.status;
-            this.statusMsg = this.callStatus.getStatusMsg(this.status);
+          this._assingCallsStatuses(response.body.statuses);
             if (this.isCallEnded()) {
-              // Usuniecie odpytywania o status kiedy poł. zakonczono
               clearInterval(callStatusInterval);
             }
           }
         );
-    }, 1000);
+    }, statusCheckIntervalMS);
+  }
+  private _assingCallsStatuses(statuses) {
+    this.userCall.status = statuses.userStatus;
+    this.userCall.msg = this.callStatus.getCallStatusMsg(statuses.userStatus);
+    this.otherCall.status = statuses.otherStatus;
+    this.otherCall.msg = this.callStatus.getCallStatusMsg(statuses.otherStatus);
   }
 
 
