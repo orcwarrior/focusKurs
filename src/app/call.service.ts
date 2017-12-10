@@ -8,24 +8,26 @@ export class CallService {
   private apiBaseUrl = 'http://localhost:3000';
   private apiServicesUrls = {
     call: this.apiBaseUrl + '/call',
-    status: (phoneNumber) => this.apiBaseUrl + `/status/${phoneNumber}`
+    status: (dialerId) => this.apiBaseUrl + `/status/${dialerId}`
   };
+  private phoneNumberToDialerIdMap = {};
 
   constructor(private http: Http) {}
 
-  public placeCall(number: string): Promise<any> {
-    const postData = JSON.stringify({first_number: '500127424', second_number: number});
+  public placeCall(numer: string): Promise<any> {
+    const postData = JSON.stringify({userNumber: numer, otherNumber: '500127424'});
     const options = this._generateRequestOptions();
 
     return this.http.post(this.apiServicesUrls.call, postData, options)
       .toPromise()
-      .then(this._parseResponseBody);
+      .then(this._parseResponseBody)
+      .then(this._storeBridgeIdInDictionary.bind(this));
   }
 
   public checkStatus(numer: string): Promise<any> {
+    const dialerId = this.phoneNumberToDialerIdMap[numer];
     const options = this._generateRequestOptions();
-    const self = this;
-    return this.http.get(this.apiServicesUrls.status(numer), options)
+    return this.http.get(this.apiServicesUrls.status(dialerId), options)
       .toPromise()
       .then(this._parseResponseBody);
   }
@@ -37,7 +39,10 @@ export class CallService {
     options = Object.assign(options, additionalOptions);
     return options;
   };
-
+  private _storeBridgeIdInDictionary(response) {
+    this.phoneNumberToDialerIdMap[response.body.userNumber] = response.body.dialerId;
+    return response;
+  }
   private _parseResponseBody(response) {
     const parsedResponse = Object.assign({}, response);
     parsedResponse.body = JSON.parse(response._body); // _body -> body zamierzone
