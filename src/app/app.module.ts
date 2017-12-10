@@ -8,7 +8,7 @@ import {PanelComponent} from './panel/panel.component';
 import {WidgetComponent} from './widget/widget.component';
 import {CallService} from './call.service';
 import {RingingComponent} from './ringing/ringing.component';
-import {CallStatus} from "./call-status";
+import {CallStatus} from './call-status';
 import {Routes, RouterModule} from '@angular/router';
 import {AppRoutes} from './app.routes';
 
