@@ -10,9 +10,10 @@ const callFactory = new CallFactory(connector);
 // (Bezpośrednie calle i ich statusy będą przydatne dla
 //  wizualizacji na froncie)
 class dialerCallWrapper {
-  phoneNumbers = [];
-  calls = null; // Array [0,1] of Call instances
-  bridge = null; // Bridge (between calls) instance
+  public id = null;
+  public phoneNumbers = [];
+  public calls = null; // Array [0,1] of Call instances
+  public bridge = null; // Bridge (between calls) instance
 
   constructor(phoneNumber1, phoneNumber2) {
     this.id = getDialerIdByPhoneNumbers(phoneNumber1, phoneNumber2);
