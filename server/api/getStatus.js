@@ -1,4 +1,4 @@
-import {getDialer} from "../utils/dialerCalls.store";
+import {getDialer} from "../utils/dialerCall.store";
 
 const DIALER_ERR_STATUS = 'NODE: CALL NOT FOUND';
 
