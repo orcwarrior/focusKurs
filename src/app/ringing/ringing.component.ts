@@ -21,7 +21,9 @@ export class RingingComponent implements OnInit {
   }
 
   public isCallEnded() {
-    return this.bridge.status === 'FINISHED';
+    // TODO: Should have service providing bridges statuses
+    const bridgeStatus = this.bridge.status;
+    return bridgeStatus === 'FINISHED' || bridgeStatus === 'FAILED';
   }
 
   public getCallIconClass(status) {
