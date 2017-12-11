@@ -9,7 +9,7 @@ import {Router, Routes} from '@angular/router';
   styleUrls: ['./widget.component.css']
 })
 export class WidgetComponent implements OnInit {
-  numer = '500127424';
+  numer = '';
   validator = /^[0-9]{9}$/;
 
   constructor(private router: Router) {
