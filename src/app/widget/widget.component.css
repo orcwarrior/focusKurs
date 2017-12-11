@@ -4,7 +4,7 @@
   display: grid;
   justify-content: center;
   grid-template-columns: 10% 40% 50%;
-  grid-template-rows: 60% 10%;
+  grid-template-rows: 20% 420px 20%;
   height: 100%; width: 100%;
 }
 .item {
@@ -12,15 +12,16 @@
   display: block;
   width: 100%;
   grid-column: 2;
-  align-self: flex-end;
-  justify-self: center;
+  grid-row: 2;
+  align-self: flex-start;
+  justify-self: stretch;
   overflow: hidden;
   border-radius: 2px;
 }
 .item-btn {
   position: relative;
   display: block;
-  grid-column: 2; grid-row: 2;
+  grid-column: 2; grid-row: 3;
   align-self: flex-start;
 }
 

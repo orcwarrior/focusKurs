@@ -2,8 +2,8 @@
   position: absolute;
   z-index: 2;
   display: grid;
-  grid-template-columns: 10% 35% 50%;
-  grid-template-rows: 70% 10%;
+  grid-template-columns: 10% 40% 50%;
+  grid-template-rows: 20% 70% 10%;
   height: 100%; width: 100%;
 }
 .item {
@@ -11,8 +11,9 @@
   display: block;
   width: 100%;
   grid-column: 2;
-  align-self: flex-end;
-  justify-self: end;
+  grid-row: 2;
+  align-self: flex-start;
+  justify-self: stretch;
   overflow: hidden;
   border-radius: 2px;
 }
