@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Globals} from "../app.globals";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-intro',
@@ -8,13 +7,10 @@ import {Globals} from "../app.globals";
 })
 export class IntroComponent implements OnInit {
 
-  constructor(private globals: Globals) { }
+  constructor() {
+  }
 
   ngOnInit() {
-    // Ugly as hell, but...
-    setTimeout(() => {
-      this.globals.phone = true;
-    }, 800)
   }
 
 }

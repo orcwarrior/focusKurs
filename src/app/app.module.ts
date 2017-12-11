@@ -14,7 +14,6 @@ import { IntroComponent } from './intro/intro.component';
 // providers
 import {CallStatus} from './call-status';
 import {CallService} from './call.service';
-import {Globals} from './app.globals';
 
 import { HttpClientModule } from '@angular/common/http';
 import { InlineSVGModule } from 'ng-inline-svg';
@@ -31,7 +30,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
     BrowserModule, FormsModule, HttpModule, HttpClientModule, InlineSVGModule,
     RouterModule.forRoot(AppRoutes)
   ],
-  providers: [CallService, CallStatus, Globals],
+  providers: [CallService, CallStatus],
   bootstrap: [AppComponent]
 })
 export class AppModule {
