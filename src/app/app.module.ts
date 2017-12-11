@@ -6,11 +6,18 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {PanelComponent} from './panel/panel.component';
 import {WidgetComponent} from './widget/widget.component';
-import {CallService} from './call.service';
 import {RingingComponent} from './ringing/ringing.component';
-import {CallStatus} from './call-status';
 import {Routes, RouterModule} from '@angular/router';
 import {AppRoutes} from './app.routes';
+import { IntroComponent } from './intro/intro.component';
+
+// providers
+import {CallStatus} from './call-status';
+import {CallService} from './call.service';
+import {Globals} from './app.globals';
+
+import { HttpClientModule } from '@angular/common/http';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 @NgModule({
   declarations: [
@@ -18,12 +25,13 @@ import {AppRoutes} from './app.routes';
     PanelComponent,
     WidgetComponent,
     RingingComponent,
+    IntroComponent,
   ],
   imports: [
-    BrowserModule, FormsModule, HttpModule,
+    BrowserModule, FormsModule, HttpModule, HttpClientModule, InlineSVGModule,
     RouterModule.forRoot(AppRoutes)
   ],
-  providers: [CallService, CallStatus],
+  providers: [CallService, CallStatus, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule {

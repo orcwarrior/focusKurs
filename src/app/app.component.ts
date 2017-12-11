@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Globals} from "./app.globals";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hello from my app';
+  constructor (private globals: Globals) {
+    this.globals.phone = true;
+  }
+
 }

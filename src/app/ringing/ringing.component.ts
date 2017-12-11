@@ -15,6 +15,7 @@ export class RingingComponent implements OnInit {
   private numer: string;
   private userCall = {status: null, msg: null};
   private otherCall = {status: null, msg: null};
+  private bridge;
 
   constructor(private route: ActivatedRoute, private callService: CallService, private callStatus: CallStatus) {
   }
@@ -50,6 +51,7 @@ export class RingingComponent implements OnInit {
     this.userCall.msg = this.callStatus.getCallStatusMsg(statuses.userStatus);
     this.otherCall.status = statuses.otherStatus;
     this.otherCall.msg = this.callStatus.getCallStatusMsg(statuses.otherStatus);
+    this.bridge = {status: statuses.bridgeStatus};
   }
 
 

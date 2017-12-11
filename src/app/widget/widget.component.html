@@ -1,12 +1,33 @@
-<div class="header">
-  Zadzwonimy do Ciebie w ciagu 26 sekund.
+<div class="grid-wrapper">
+  <div class="item">
+    <div class="ink-wrapper">
+      <div class="material-ink"></div>
+    </div>
+    <div class="form-wrapper">
+      <h1>
+        Sprawdź, zadzwonimy do ciebie w ciągu kilku sekund!
+      </h1>
+      <p>Wprowadź swój numer telefonu, a nasz konsultant za chwilę skontaktuje się z tobą.</p>
+      <hr/>
+      <hr/>
+      <form (ngSubmit)="onSubmit()">
+        <div class="material-input" [ngClass]="{error: !isValidNumber()}">
+          <input name="number" id="form-number" [(ngModel)]="numer" type="text" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Numer telefonu</label>
+        </div>
+        <hr/>
+        <!-- Hacky hidden button ilove hacks at5am -->
+        <button *ngIf="false" type="submit" [disabled]="!isValidNumber()">
+          Zadzwoń teraz
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="item-btn">
+    <div class="material-fab" [inlineSVG]="'/assets/svg/phone.svg'"
+         [ngClass]="{disabled: !isValidNumber()}">
+    </div>
+  </div>
 </div>
-<label class="formlabel" for="form-number">
-  Wprowadź numer
-</label>
-<input [(ngModel)]="numer" [ngClass]="{error: !isValidNumber()}"
-       class="form-number" id="form-number"/>
-
-<button class="call-button" routerLink="ringing/{{numer}}" [disabled]="!isValidNumber()">
-  Zadzwoń teraz
-</button>
