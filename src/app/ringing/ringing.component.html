@@ -23,14 +23,21 @@
       </h1>
       <p>Serwis za chwile nawiąże z tobą połączenie.</p>
       <hr/>
-      <hr/>
       <div class="status-grid">
         <div class="user-item">
-          <div id="phone-user" [inlineSVG]="'/assets/svg/phone.svg'"></div>
+          <h3>Użytkownik</h3>
+          <div id="phone-user" class="phone-icon" [inlineSVG]="'/assets/svg/phone.svg'"></div>
+          <div class="status">
+            {{userCall.msg}}
+          </div>
 
-        </div>
+        </div>n
         <div class="other-item">
-          <div id="phone-other" [inlineSVG]="'/assets/svg/phone.svg'"></div>
+          <h3>Obsługa</h3>
+          <div id="phone-other" class="phone-icon"  [inlineSVG]="'/assets/svg/phone.svg'"></div>
+          <div class="status">
+            {{otherCall.msg}}
+          </div>
 
         </div>
         <div class="bridge-item">

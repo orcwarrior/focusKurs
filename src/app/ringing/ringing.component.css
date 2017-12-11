@@ -56,30 +56,42 @@
   height: 100%; width: 100%;
 }
 
+/* Status generics */
+.status-grid h3 {
+  font-weight: 300;
+  font-style: italic;
+}
+.phone-icon {
+  padding: 12px;
+  width: 52px;
+  stroke: #888;
+  stroke-width: 16px;
+  fill: #eee;
+}
+.status {
+  width: 80%;
+}
+
 /* user*/
 .user-item {
-  grid-area: main;
-  background: red;
-}
-#phone-user {
-  width: 32px;
-  stroke: #333;
-  stroke-width: 12px;
-  fill: #eee;
+  grid-row: 1;
+  grid-column: 1;
+  justify-self: start;
 }
 
 /* other */
 .other-item {
-  grid-area: main;
-  background: blue;
+  grid-row: 1;
+  grid-column: 2;
+  justify-self: end;
 }
 #phone-other {
-  width: 32px;
-  stroke: #333;
-  stroke-width: 12px;
-  fill: #eee;
+  transform: scale(-1,1);
 }
+
+
 .bridge-item {
-  grid-area: footer;
+  grid-row: 2;
+  grid-column: 1 / span 2;
   background: green;
 }
