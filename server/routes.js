@@ -1,4 +1,4 @@
-// import apiCall from './api/call'
+// import {apiCall} from './api/call'
 // import {apiStatus} from "./api/getStatus";
 import {apiStatusParamBridgeId} from './api/getStatus'
 

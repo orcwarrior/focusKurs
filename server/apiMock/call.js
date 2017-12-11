@@ -1,4 +1,4 @@
-export default async function mockApiCall(req, res) {
+export async function mockApiCall(req, res) {
   return res.json({
     status: 'SUCCESS',
     msg: 'Udaje ze nawiazałem połączenie',

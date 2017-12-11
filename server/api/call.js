@@ -2,7 +2,7 @@ import dialerCall from '../utils/dialerCall.wrapper'
 import {setDialer, getDialerIdByPhoneNumbers} from '../utils/dialerCall.store'
 import apiCredentials from '../utils/focus.api.credentials'
 
-export default async function callService(req, res) {
+export async function apiCall(req, res) {
   let [firstPN, secondPN] = [req.body.userNumber,
     req.body.otherNumber || apiCredentials.servicePhoneNumber];
   let dialer;
