@@ -3,7 +3,7 @@
   z-index: 2;
   display: grid;
   justify-content: center;
-  grid-template-columns: 10% 35% 50%;
+  grid-template-columns: 10% 40% 50%;
   grid-template-rows: 60% 10%;
   height: 100%; width: 100%;
 }
@@ -178,12 +178,12 @@ input:focus ~ .highlight {
   position: absolute;
   cursor: pointer;
   z-index: 5;
-  bottom: -32px; right: 6%;
+  bottom: -28px; right: 8%;
   width: 34px; height: 34px;
   background: #3d71b8;
   border-radius: 50%;
   box-shadow: 0 3px 6px 0 rgba(0,0,0,0.4);
-  padding: 18px;
+  padding: 22px;
 
   opacity: 0;
   animation: fadein-grow 0.25s linear 0.4s;
@@ -194,7 +194,7 @@ input:focus ~ .highlight {
 #phone-user, #phone-other {
   position: absolute;
   z-index: 6;
-  width: 32px; height: 32px;
+  width: 36px; height: 36px;
   fill: #eee;
   transition: all 0.3s ease-in-out;
 }

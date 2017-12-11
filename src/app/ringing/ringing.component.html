@@ -1,19 +1,3 @@
-<div class="header">
-</div>
-
-<div *ngIf="userCall.status || otherCall.status" class="call-button" (click)="call()">
-  Statusy połączeń:
-  <p>
-    Uzytkownik: {{userCall.status}} / {{userCall.msg}} <br/>
-    Obsługa: {{otherCall.status}} / {{otherCall.msg}} <br/>
-    Bridge: {{bridge.status}} <br/>
-  </p>
-</div>
-
-<button class="close-call-button" routerLink="/" *ngIf="isCallEnded()">
-  Zakończ połączenie
-</button>
-
 <div class="grid-wrapper">
   <!-- Form state of view-->
   <div class="item">
@@ -31,17 +15,18 @@
             {{userCall.msg}}
           </div>
 
-        </div>n
+        </div>
         <div class="other-item">
-          <h3>Obsługa</h3>
-          <div id="phone-other" class="phone-icon"  [inlineSVG]="'/assets/svg/phone.svg'"></div>
+          <div class="wrapper">
+            <h3>Obsługa</h3>
+            <div id="phone-other" class="phone-icon" [inlineSVG]="'/assets/svg/phone.svg'"></div>
+          </div>
           <div class="status">
             {{otherCall.msg}}
           </div>
-
         </div>
-        <div class="bridge-item">
-          Bridge status
+        <div class="bridge-item" [hidden]="!bridge.status">
+          Mostek: {{bridge.status}}
         </div>
       </div>
     </div>
