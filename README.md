@@ -19,6 +19,7 @@ Projekt utworzony dla kursu org. przez Focus Telecom.
   * Całą aplikacje (frontend i backend) można uruchomić za pomocą jednego polecenia **npm start**.
     Serwery będą działały współbierznie za sprawą modułu [concurrently](https://www.npmjs.com/package/concurrently)
     (Także w trybie debugowania node: **npm run debug:start**)
+* Kod frontendu, którego jakość spada wraz ze zblizaniem się deadline'u może być swego rodzaju case-study.
 * Wykorzystanie metody dialer.call z modułu **dialer** zostało zastąpione [własną implementacją](https://github.com/orcwarrior/focusKurs/blob/master/server/utils/dialerCall.wrapper.js), która zamiast samego obiektu bridge zwraca wrapper nie tylko z tym obiektem, ale też instancjami Call które składają się na Bridge, pozwala to dokładniej śledzić status połączeń co zostało wykorzystane na frontendzie.
 * Za sprawą użycia npm-run aplikacja nie powinna mieć problemu z działaniem na wszystkich systemach operacyjnych (co niestety nie zostało przetestowane na linuksie / osx 😂).
 * Znacząco zmodularyzowany serwer express dla czytelności i łatwości wprowdzania zmian w kodzie.
