@@ -45,3 +45,41 @@
   border: none;
   height: 1.5em;
 }
+.status-grid {
+  position: relative;
+  grid-template-areas:
+    "main main"
+    "footer footer";
+  display: grid;
+  justify-items: stretch;
+  align-content: space-around;
+  height: 100%; width: 100%;
+}
+
+/* user*/
+.user-item {
+  grid-area: main;
+  background: red;
+}
+#phone-user {
+  width: 32px;
+  stroke: #333;
+  stroke-width: 12px;
+  fill: #eee;
+}
+
+/* other */
+.other-item {
+  grid-area: main;
+  background: blue;
+}
+#phone-other {
+  width: 32px;
+  stroke: #333;
+  stroke-width: 12px;
+  fill: #eee;
+}
+.bridge-item {
+  grid-area: footer;
+  background: green;
+}
