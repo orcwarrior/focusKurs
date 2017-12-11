@@ -181,7 +181,6 @@ input:focus ~ .highlight {
   bottom: -32px; right: 6%;
   width: 34px; height: 34px;
   background: #3d71b8;
-  fill: #eee;
   border-radius: 50%;
   box-shadow: 0 3px 6px 0 rgba(0,0,0,0.4);
   padding: 18px;
@@ -191,6 +190,18 @@ input:focus ~ .highlight {
   animation-fill-mode: forwards;
   transition: all;
   transition-duration: 0.3s;
+}
+#phone-user, #phone-other {
+  position: absolute;
+  z-index: 6;
+  width: 32px; height: 32px;
+  fill: #eee;
+  transition: all 0.3s ease-in-out;
+}
+.transition > #phone-user,
+.transition > #phone-other {
+  fill: none;
+  stroke: #ccc;
 }
 .material-fab:hover {
   background: #407fff;

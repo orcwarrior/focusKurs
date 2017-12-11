@@ -1,4 +1,5 @@
 <div class="grid-wrapper">
+  <!-- Form state of view-->
   <div class="item">
     <div class="ink-wrapper">
       <div class="material-ink"></div>
@@ -25,9 +26,13 @@
       </form>
     </div>
   </div>
+
+  <!-- Both states of view-->
   <div class="item-btn">
-    <div class="material-fab" [inlineSVG]="'/assets/svg/phone.svg'"
+    <div class="material-fab" (click)="onSubmit()"
          [ngClass]="{disabled: !isValidNumber()}">
+      <div id="phone-user" [inlineSVG]="'/assets/svg/phone.svg'"></div>
+      <div id="phone-other" [inlineSVG]="'/assets/svg/phone.svg'"></div>
     </div>
   </div>
 </div>
