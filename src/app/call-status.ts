@@ -8,7 +8,7 @@ export class CallStatus {
     'ANSWERED': 'Połączenie nawiązane!',
     'FAILED': 'Błąd w nawiązywaniu połączenia!',
     'NO ANSWER': 'Połączenie nieodebrane!',
-    'BUSY': 'Połączenie odrzucone!',
+    'BUSY': 'Numer zajęty',
     // Dodatkowe błedy z poziomu node:
     'NODE: CALL NOT FOUND': 'Ządane połączenie nieodnalezione (API niezarejestrowało połączenia z tym numerem).'
   };
