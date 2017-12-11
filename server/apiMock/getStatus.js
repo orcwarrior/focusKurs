@@ -72,7 +72,7 @@ export async function mockGetStatus(req, res) {
     if (dialMock.calls % 6 === 5) dialMock.userStatus = getNextStatus(dialMock.userStatus, dialMock.var + -1);
     dialMock.bridgeStatus = updateBridge(dialMock);
 
-    if (dialMock.calls + (Math.random() % 10) > 22) {
+    if (dialMock.calls + (Math.random() % 10) > 16) {
       delete dialersStoreMock[req.dialerId];
       return res.json(finishCall(dialMock));
     }
