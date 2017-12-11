@@ -1,36 +1,11 @@
-import {Connector, CallFactory, Bridge} from 'dialer';
+import {Connector, CallFactory, Bridge} from 'dialer'
 import apiCredentials from './focus.api.credentials'
 import {getDialerIdByPhoneNumbers} from './dialerCall.store'
+import smartBridge from './dialer.smartBridge'
 
 const connector = new Connector(apiCredentials.url, apiCredentials.login, apiCredentials.password)
 const callFactory = new CallFactory(connector);
 
-// TODO: Move to smartBridge
-function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function waitUntilIsNotPending(bridge) {
-  do {
-    var bridgeStatus = await bridge.getStatus();
-    // debug('check status', bridgeStatus);
-    if(bridgeStatus === bridge.STATUSES.PENDING) {
-      await timeout(500);
-    }
-  } while(bridgeStatus === bridge.STATUSES.PENDING)
-  return bridgeStatus;
-}
-async function smartBridge(bridge) {
-  var isNotPendingStatus = await waitUntilIsNotPending(bridge);
-  if(isNotPendingStatus === bridge.STATUSES.READY) {
-    return bridge.bridge()
-      .catch(function(error) {
-        // debug('catch', error);
-        return false;
-      });
-  }
-  return false;
-}
 
 // Własny dialer oparty na klasie z dodatkowym dostępem do
 // instancji Call(i) realizowanych normalnie pod warstwa Bridge
