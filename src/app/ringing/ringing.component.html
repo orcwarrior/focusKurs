@@ -10,7 +10,8 @@
       <div class="status-grid">
         <div class="user-item">
           <h3>Użytkownik</h3>
-          <div id="phone-user" class="phone-icon" [inlineSVG]="'/assets/svg/phone.svg'"></div>
+          <div id="phone-user" class="phone-icon" [inlineSVG]="'/assets/svg/phone.svg'"
+               [ngClass]="getCallIconClass(userCall.status)"></div>
           <div class="status">
             {{userCall.msg}}
           </div>
@@ -19,14 +20,24 @@
         <div class="other-item">
           <div class="wrapper">
             <h3>Obsługa</h3>
-            <div id="phone-other" class="phone-icon" [inlineSVG]="'/assets/svg/phone.svg'"></div>
+            <div id="phone-other" class="phone-icon" [inlineSVG]="'/assets/svg/phone.svg'"
+            [ngClass]="getCallIconClass(otherCall.status)"></div>
           </div>
           <div class="status">
             {{otherCall.msg}}
           </div>
         </div>
         <div class="bridge-item" [hidden]="!bridge.status">
-          Mostek: {{bridge.status}}
+          <div class="bridge-status">
+            {{bridge.status}}
+          </div>
+          <div class="requestProgress">
+            <div class="bar"></div>
+            <div class="requestItem requestProgress1"></div>
+          </div>
+        </div>
+        <div class="footer-item" *ngIf="isCallEnded()">
+          Zakończ połaczenie
         </div>
       </div>
     </div>

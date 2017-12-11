@@ -2,9 +2,8 @@
   position: absolute;
   z-index: 2;
   display: grid;
-  justify-content: center;
   grid-template-columns: 10% 35% 50%;
-  grid-template-rows: 60% 10%;
+  grid-template-rows: 70% 10%;
   height: 100%; width: 100%;
 }
 .item {
@@ -13,7 +12,7 @@
   width: 100%;
   grid-column: 2;
   align-self: flex-end;
-  justify-self: center;
+  justify-self: end;
   overflow: hidden;
   border-radius: 2px;
 }
@@ -45,16 +44,6 @@
   border: none;
   height: 1.5em;
 }
-.status-grid {
-  position: relative;
-  grid-template-areas:
-    "main main"
-    "footer footer";
-  display: grid;
-  justify-items: stretch;
-  align-content: space-around;
-  height: 100%; width: 100%;
-}
 
 /* Status generics */
 .wrapper {
@@ -67,12 +56,32 @@
   font-style: italic;
 }
 .phone-icon {
+  position: relative;
   padding: 16px;
-  width: 52px;
+  width: 52px; height: 52px;
   stroke: #888;
   stroke-width: 16px;
-  fill: #eee;
+  fill: none;
 }
+.phone-icon::before {
+  position: absolute;
+  z-index: -1;
+  top: 16px; /*+padding*/
+  display: block;
+  content: '';
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: #ccc;
+  box-shadow: 0px 0px 6px #ccc;
+  opacity: 0;
+  animation: pulsating 1s infinite ease-in-out;
+}
+@keyframes pulsating {
+  0% {opacity: 0; transform: scale(0.1);}
+  20% {opacity: 0.3; transform: scale(0.5);}
+  100% {opacity: 0; transform: scale(2.5);}
+}
+
 .status {
   display: block;
   clear: both;
@@ -81,6 +90,15 @@
   width: 100%;
 }
 
+.status-grid {
+  position: relative;
+  grid-auto-columns: 35% 30% 35%;
+  display: grid;
+  justify-items: stretch;
+  align-content: space-around;
+  min-height: 200px;
+  height: 100%; width: 100%;
+}
 /* user*/
 .user-item {
   grid-row: 1;
@@ -91,16 +109,69 @@
 /* other */
 .other-item {
   grid-row: 1;
-  grid-column: 2;
+  grid-column: 3;
   justify-self: end;
 }
 #phone-other {
   transform: scale(-1,1);
 }
 
-
 .bridge-item {
   padding: 0 1em;
+  grid-row: 1;
+  grid-column: 2;
+  align-self: center;
+  justify-self: stretch;
+}
+.bridge-status {
+  font-size: 12pt;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  color: #444;
+}
+
+
+/* Indeterminate progress bar */
+/* https://codepen.io/ajperel/pen/jPqXeb */
+.requestProgress {
+  /*DK: This'll make it stand-out from actual
+    grid column */
+  width: 250%;
+  margin-left: -75%;
+  height: 2px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.bar {
+  position:absolute; top: 1em;
+  background-color: #eee;
+  width: calc(100% * 3/7);
+  height: 100%;
+  animation: move 1.35s ease-in infinite;
+}
+
+@keyframes move
+{
+  0%   {transform: translate(-100%, 0)}
+  100% {transform: translate(calc(7/2*100%), 0)}
+}
+
+.requestItem {
+  flex: 1 100%;
+}
+
+.requestProgress1 {
+  background-color: #007db6;
+}
+
+
+/* Footer */
+.footer-item {
+  padding: 1em 0;
   grid-row: 2;
-  grid-column: 1 / span 2;
+  grid-column: 1 / span 3;
+  justify-self: center;
 }

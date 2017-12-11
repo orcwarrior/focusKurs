@@ -21,8 +21,11 @@ export class RingingComponent implements OnInit {
   }
 
   public isCallEnded() {
-    return this.callStatus.getUnsucessfulCallStatuses()
-      .some((unsucessStatus) => unsucessStatus === this.userCall.status || unsucessStatus === this.otherCall.status);
+    return this.bridge.status === 'FINISHED';
+  }
+
+  public getCallIconClass(status) {
+    return this._stringDasherize(status);
   }
 
   public ngOnInit() {
@@ -33,12 +36,17 @@ export class RingingComponent implements OnInit {
     });
   }
 
+
   /* private methods */
+  private _stringDasherize(str) {
+    return str.replace(' ', '-');
+  }
+
   private _watchCallStatus() {
     const callStatusInterval = setInterval(() => {
       this.callService.checkStatus(this.numer)
         .then((response) => {
-          this._assingCallsStatuses(response.body.statuses);
+            this._assingCallsStatuses(response.body.statuses);
             if (this.isCallEnded()) {
               clearInterval(callStatusInterval);
             }
@@ -46,6 +54,7 @@ export class RingingComponent implements OnInit {
         );
     }, statusCheckIntervalMS);
   }
+
   private _assingCallsStatuses(statuses) {
     this.userCall.status = statuses.userStatus;
     this.userCall.msg = this.callStatus.getCallStatusMsg(statuses.userStatus);
