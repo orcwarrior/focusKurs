@@ -1,12 +1,47 @@
-.close-call-button {
-  width: 300px;
-  height: 75px;
-  vertical-align: middle;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 75px;
-  background: #8f7f3d;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 20px;
+.grid-wrapper {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 10% 35% 50%;
+  grid-template-rows: 60% 10%;
+  height: 100%; width: 100%;
+}
+.item {
+  position: relative;
+  display: block;
+  width: 100%;
+  grid-column: 2;
+  align-self: flex-end;
+  justify-self: center;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+
+.form-wrapper {
+  position: relative;
+  z-index: 2;
+  border-radius: 3px;
+  padding: 1em 3em;
+  font-family: 'Open Sans', sans-serif;
+
+  background: rgba(255,255,255, 0.9);
+  opacity: 0;
+  animation: fade-in 0.3s ease-in-out 0.3s;
+  animation-fill-mode: forwards;
+}
+.form-wrapper > h1 {
+  font-weight: 300;
+  color: #444;
+  z-index: 3;
+}
+.form-wrapper > p {
+  font-weight: 300;
+  font-style: italic;
+}
+.form-wrapper hr {
+  width: 100%;
+  border: none;
+  height: 1.5em;
 }

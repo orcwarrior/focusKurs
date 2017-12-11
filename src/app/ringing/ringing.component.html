@@ -1,5 +1,4 @@
 <div class="header">
-  <h2> Wybieranie numeru {{numer}}...</h2>
 </div>
 
 <div *ngIf="userCall.status || otherCall.status" class="call-button" (click)="call()">
@@ -14,3 +13,28 @@
 <button class="close-call-button" routerLink="/" *ngIf="isCallEnded()">
   Zakończ połączenie
 </button>
+
+<div class="grid-wrapper">
+  <!-- Form state of view-->
+  <div class="item">
+    <div class="form-wrapper">
+      <h1>
+        Wybieranie numeru {{numer}}...
+      </h1>
+      <p>Serwis za chwile nawiąże z tobą połączenie.</p>
+      <hr/>
+      <hr/>
+      <div class="status-grid">
+        <div class="user-item">
+
+        </div>
+        <div class="other-item">
+
+        </div>
+        <div class="bridge-item">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
