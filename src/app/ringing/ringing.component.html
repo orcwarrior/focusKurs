@@ -28,11 +28,11 @@
             {{otherCall.msg}}
           </div>
         </div>
-        <div class="bridge-item" [hidden]="!bridge.status" *ngIf="!isCallEnded()">
+        <div class="bridge-item" [hidden]="!bridge.status">
           <div class="bridge-status">
-            {{bridge.status}}
+            {{bridge.msg}}
           </div>
-          <div class="requestProgress" [ngClass]="getBridgeBarClass(bridge.status)">
+          <div class="requestProgress" [ngClass]="getBridgeBarClass(bridge.status)" *ngIf="!isCallEnded()">
             <div class="bar"></div>
             <div class="requestItem requestProgress1"></div>
           </div>

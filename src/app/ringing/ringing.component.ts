@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CallService} from '../call.service';
 import {CallStatus} from '../call-status';
+import {BridgeStatus} from '../bridge-status';
 
 const statusCheckIntervalMS = 1000;
 
@@ -15,9 +16,12 @@ export class RingingComponent implements OnInit {
   private numer: string;
   private userCall = {status: null, msg: null};
   private otherCall = {status: null, msg: null};
-  private bridge = {status: null};
+  private bridge = {status: null, msg: null};
 
-  constructor(private route: ActivatedRoute, private callService: CallService, private callStatus: CallStatus) {
+  constructor(private route: ActivatedRoute,
+              private callService: CallService,
+              private callStatus: CallStatus,
+              private bridgeStatus: BridgeStatus) {
   }
   public isCallInitiated() {
     return this.bridge.status === 'BRIDGED';
@@ -67,7 +71,9 @@ export class RingingComponent implements OnInit {
     this.userCall.msg = this.callStatus.getCallStatusMsg(statuses.userStatus);
     this.otherCall.status = statuses.otherStatus;
     this.otherCall.msg = this.callStatus.getCallStatusMsg(statuses.otherStatus);
-    this.bridge = {status: statuses.bridgeStatus};
+    this.bridge.status = statuses.bridgeStatus;
+    this.bridge.msg = this.bridgeStatus.getBridgeStatus(statuses.bridgeStatus);
+
   }
 
 
