@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {CallSocketsService} from '../call.sockets.service';
 import {CallService} from '../call.service';
 import {CallStatus} from '../call-status';
 import {BridgeStatus} from '../bridge-status';
 
-const statusCheckIntervalMS = 1000;
+const statusCheckIntervalMS = 500;
 
 @Component({
   selector: 'app-ringing',
@@ -19,7 +20,7 @@ export class RingingComponent implements OnInit {
   private bridge = {status: null, msg: null};
 
   constructor(private route: ActivatedRoute,
-              private callService: CallService,
+              private callService: CallSocketsService,
               private callStatus: CallStatus,
               private bridgeStatus: BridgeStatus) {
   }
@@ -49,15 +50,15 @@ export class RingingComponent implements OnInit {
 
 
   /* private methods */
-  private _stringDasherize(str = '') {
-    return str.replace(' ', '-');
+  private _stringDasherize(str) {
+    return (str||'').replace(' ', '-');
   }
 
   private _watchCallStatus() {
     const callStatusInterval = setInterval(() => {
       this.callService.checkStatus(this.numer)
-        .then((response) => {
-            this._assingCallsStatuses(response.body.statuses);
+        .then((statuses) => {
+            this._assingCallsStatuses(statuses);
             if (this.isCallEnded()) {
               clearInterval(callStatusInterval);
             }
