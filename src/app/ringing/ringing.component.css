@@ -164,9 +164,7 @@
   flex: 1 100%;
 }
 
-.requestProgress1 {
-  background-color: #007db6;
-}
+.requestProgress1 { background-color: #767e8f; }
 
 
 /* Footer */
@@ -175,4 +173,31 @@
   grid-row: 2;
   grid-column: 1 / span 3;
   justify-self: center;
+}
+
+/* Button outline */
+button.outline {
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+  background: transparent;
+  color: #1172c4;
+  font-size: 14px;
+  border: 2px solid #1172c4;
+  border-radius: 2px;
+  padding: 10px 40px;
+  text-transform: uppercase;
+  transition: all 0.2s linear;
+}
+button.outline a {
+  text-decoration: none;
+}
+button.outline:hover {
+  color: white;
+  background: #1172c4;
+  border-color: white;
+  transition: all 0.2s linear;
+}
+button.outline:active {
+  background: #0069c4;
 }
