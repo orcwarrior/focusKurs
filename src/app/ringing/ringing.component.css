@@ -63,7 +63,7 @@
   stroke: #888;
   stroke-width: 16px;
   fill: none;
-  transition: all 0.25s;
+  transition: all 0.35s;
 }
 .phone-icon::before {
   position: absolute;
@@ -83,7 +83,7 @@
 .phone-icon.NO-ANSWER,
 .phone-icon.BUSY {
   transform: rotate(135deg) translate(-4px, -11px);
-  transition: all 0.25s;
+  transition: all 0.35s;
   stroke: #c43e3f;
 }
 .phone-icon.CONNECTED {
@@ -98,6 +98,7 @@
 .phone-icon.CONNECTED::before {
   background: #1172c4;
   box-shadow: 0px 0px 6px #1172c4;
+  animation-duration: 0.6s;
 }
 .phone-icon.ANSWERED::before {
   background: #5c6;
