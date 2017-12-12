@@ -19,7 +19,9 @@ export class RingingComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private callService: CallService, private callStatus: CallStatus) {
   }
-
+  public isCallInitiated() {
+    return this.bridge.status === 'BRIDGED';
+  }
   public isCallEnded() {
     // TODO: Should have service providing bridges statuses
     const bridgeStatus = this.bridge.status;

@@ -5,7 +5,7 @@
       <h1>
         Wybieranie numeru {{numer}}...
       </h1>
-      <p>Serwis za chwile nawiąże z tobą połączenie.</p>
+      <p *ngIf="!isCallInitiated() && !isCallEnded()">Serwis za chwile nawiąże z tobą połączenie.</p>
       <hr/>
       <div class="status-grid">
         <div class="user-item">
