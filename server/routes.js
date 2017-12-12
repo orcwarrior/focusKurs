@@ -6,8 +6,9 @@ import {apiStatusParamBridgeId} from './api/getStatus'
 // import {mockApiCall} from './apiMock/call'
 
 export default function (app) {
+
   app.post('/call', apiCall);
+  app.get('/status/:dialerId', apiStatus);
 
   app.param('dialerId', apiStatusParamBridgeId);
-  app.get('/status/:dialerId', apiStatus);
 }

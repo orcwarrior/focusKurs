@@ -1,6 +1,4 @@
-import {getDialer} from "../utils/dialerCall.store";
-
-const DIALER_ERR_STATUS = 'NODE: CALL NOT FOUND';
+import {getStatus} from '../controllers/getStatus'
 
 export function apiStatusParamBridgeId(req, res, next, bridgeId) {
   req.dialerId = bridgeId;
@@ -8,17 +6,6 @@ export function apiStatusParamBridgeId(req, res, next, bridgeId) {
 }
 
 export async function apiStatus(req, res) {
-  let dialer = getDialer(req.dialerId);
-  if (!dialer)
-    return res.json({
-      success: false,
-      statuses: {
-        userStatus: DIALER_ERR_STATUS,
-        otherStatus: DIALER_ERR_STATUS
-      }
-    });
-  else {
-    let statuses = await dialer.getCallStatuses();
-    res.json({success: true, statuses: statuses});
-  }
+  let statuses = await getStatus(req.dialerId);
+  return res.json(statuses);
 }

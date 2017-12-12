@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import {environment} from "../environments/environment";
 
 // TODO: Rename to something more like ApiService
 @Injectable()
@@ -10,12 +11,12 @@ export class CallService {
     call: this.apiBaseUrl + '/call',
     status: (dialerId) => this.apiBaseUrl + `/status/${dialerId}`
   };
-  private phoneNumberToDialerIdMap = {};
+  private phoneNumberToDialerIdMap = {}; // overengineered
 
   constructor(private http: Http) {}
 
   public placeCall(numer: string): Promise<any> {
-    const postData = JSON.stringify({userNumber: numer, otherNumber: '500127424'});
+    const postData = JSON.stringify({userNumber: numer, otherNumber: environment.otherNumber});
     const options = this._generateRequestOptions();
 
     return this.http.post(this.apiServicesUrls.call, postData, options)
@@ -29,7 +30,9 @@ export class CallService {
     const options = this._generateRequestOptions();
     return this.http.get(this.apiServicesUrls.status(dialerId), options)
       .toPromise()
-      .then(this._parseResponseBody);
+      .then(this._parseResponseBody)
+      // This will make it 1:1 with call.sockets.service:
+      .then((response) => response.body.statuses);
   }
 
   /* private methods*/
