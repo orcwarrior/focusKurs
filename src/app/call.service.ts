@@ -30,7 +30,9 @@ export class CallService {
     const options = this._generateRequestOptions();
     return this.http.get(this.apiServicesUrls.status(dialerId), options)
       .toPromise()
-      .then(this._parseResponseBody);
+      .then(this._parseResponseBody)
+      // This will make it 1:1 with call.sockets.service:
+      .then((response) => response.body.statuses);
   }
 
   /* private methods*/
