@@ -17,6 +17,7 @@ import {CallService} from './call.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { InlineSVGModule } from 'ng-inline-svg';
+import {BridgeStatus} from './bridge-status';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
     BrowserModule, FormsModule, HttpModule, HttpClientModule, InlineSVGModule,
     RouterModule.forRoot(AppRoutes)
   ],
-  providers: [CallService, CallStatus],
+  providers: [CallService, CallStatus, BridgeStatus],
   bootstrap: [AppComponent]
 })
 export class AppModule {
