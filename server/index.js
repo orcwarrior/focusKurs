@@ -1,6 +1,7 @@
 import express from 'express'
 import middlewares from './middleware.generic'
 import routes from './routes'
+import sockets from './sockets'
 
 const app = express();
 
@@ -11,4 +12,4 @@ app.listen(3001, () => {
 
 middlewares(app);
 routes(app);
-
+sockets(app);
