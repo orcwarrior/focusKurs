@@ -86,7 +86,7 @@
   transition: all 0.35s;
   stroke: #c43e3f;
 }
-.phone-icon.CONNECTED {
+.phone-icon.RINGING {
   stroke: #1172c4;
   animation: ringing 0.1s infinite linear;
 }
@@ -95,12 +95,12 @@
   to {transform: rotate(5deg);}
 }
 /* pulsating circle */
-.phone-icon.CONNECTED::before {
+.phone-icon.RINGING::before {
   background: #1172c4;
   box-shadow: 0px 0px 6px #1172c4;
   animation-duration: 0.6s;
 }
-.phone-icon.ANSWERED::before {
+.phone-icon.CONNECTED::before {
   background: #5c6;
   box-shadow: 0px 0px 6px #5c6;
 }

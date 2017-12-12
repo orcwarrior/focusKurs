@@ -3,9 +3,9 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class CallStatus {
   private statusMsgs: Object = {
-    'RINGING': 'Trwa wybieranie numeru...',
-    'CONNECTED': 'Telefon dzwoni...',
-    'ANSWERED': 'Połączenie nawiązane!',
+    'RINGING': 'Telefon dzwoni...',
+    'CONNECTED': 'Połączenie nawiązane!',
+    'ANSWERED': 'Połączenie zakończone!',
     'FAILED': 'Błąd w nawiązywaniu połączenia!',
     'NO ANSWER': 'Połączenie nieodebrane!',
     'BUSY': 'Numer zajęty',
