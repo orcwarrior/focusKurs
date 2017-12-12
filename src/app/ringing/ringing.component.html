@@ -20,8 +20,9 @@
         <div class="other-item">
           <div class="wrapper">
             <h3>Obsługa</h3>
+            <div class="other-phone-mirror">
             <div id="phone-other" class="phone-icon" [inlineSVG]="'/assets/svg/phone.svg'"
-            [ngClass]="getCallIconClass(otherCall.status)"></div>
+                 [ngClass]="getCallIconClass(otherCall.status)"></div></div>
           </div>
           <div class="status">
             {{otherCall.msg}}

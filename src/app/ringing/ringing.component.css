@@ -63,6 +63,7 @@
   stroke: #888;
   stroke-width: 16px;
   fill: none;
+  transition: all 0.25s;
 }
 .phone-icon::before {
   position: absolute;
@@ -78,6 +79,38 @@
   animation: pulsating 1s infinite ease-in-out;
 }
 /* Statuses response */
+.phone-icon.FAILED,
+.phone-icon.NO-ANSWER,
+.phone-icon.BUSY {
+  transform: rotate(135deg) translate(-4px, -11px);
+  transition: all 0.25s;
+  stroke: #c43e3f;
+}
+.phone-icon.CONNECTED {
+  stroke: #1172c4;
+  animation: ringing 0.1s infinite linear;
+}
+@keyframes ringing {
+  from {transform: rotate(-5deg);}
+  to {transform: rotate(5deg);}
+}
+/* pulsating circle */
+.phone-icon.CONNECTED::before {
+  background: #1172c4;
+  box-shadow: 0px 0px 6px #1172c4;
+}
+.phone-icon.ANSWERED::before {
+  background: #5c6;
+  box-shadow: 0px 0px 6px #5c6;
+}
+.phone-icon.FAILED::before,
+.phone-icon.NO-ANSWER::before,
+.phone-icon.BUSY::before {
+  background: #c43e3f;
+  box-shadow: 0px 0px 6px #c43e3f;
+  animation-iteration-count: 6;
+  animation-fill-mode: forwards;
+}
 
 
 @keyframes pulsating {
@@ -116,7 +149,7 @@
   grid-column: 3;
   justify-self: end;
 }
-#phone-other {
+.other-phone-mirror {
   transform: scale(-1,1);
 }
 
