@@ -9,7 +9,8 @@ export async function getStatus(dialerId) {
       success: false,
       statuses: {
         userStatus: DIALER_ERR_STATUS,
-        otherStatus: DIALER_ERR_STATUS
+        otherStatus: DIALER_ERR_STATUS,
+        bridgeStatus: 'FAILED' // Dat quickfix
       }
     };
   else {
