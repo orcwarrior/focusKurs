@@ -77,6 +77,9 @@
   opacity: 0;
   animation: pulsating 1s infinite ease-in-out;
 }
+/* Statuses response */
+
+
 @keyframes pulsating {
   0% {opacity: 0; transform: scale(0.1);}
   20% {opacity: 0.3; transform: scale(0.5);}
@@ -144,6 +147,7 @@
   display: flex;
   position: relative;
   overflow: hidden;
+  transition: color 0.2s;
 }
 
 .bar {
@@ -164,7 +168,14 @@
   flex: 1 100%;
 }
 
-.requestProgress1 { background-color: #767e8f; }
+.requestProgress1 { background-color: #98a3b5; }
+.requestProgress.READY   .requestProgress1,
+.requestProgress.FINISHED   .requestProgress1{ background-color: #1172c4; }
+.requestProgress.BRIDGED .requestProgress1{ background-color: #54c461; }
+.requestProgress.FAILED  .requestProgress1{ background-color: #c43e3f; }
+/* I Loove dirty hacks :) */
+.requestProgress.BRIDGED .bar,
+.requestProgress.FAILED .bar { width: 100000%; animation-duration: 10000s;}
 
 
 /* Footer */

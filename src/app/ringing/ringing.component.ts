@@ -29,6 +29,9 @@ export class RingingComponent implements OnInit {
   public getCallIconClass(status) {
     return this._stringDasherize(status);
   }
+  public getBridgeBarClass(status) {
+    return this._stringDasherize(status);
+  }
 
   public ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -40,7 +43,7 @@ export class RingingComponent implements OnInit {
 
 
   /* private methods */
-  private _stringDasherize(str) {
+  private _stringDasherize(str = '') {
     return str.replace(' ', '-');
   }
 

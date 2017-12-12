@@ -27,17 +27,17 @@
             {{otherCall.msg}}
           </div>
         </div>
-        <div class="bridge-item" [hidden]="!bridge.status">
+        <div class="bridge-item" [hidden]="!bridge.status" *ngIf="!isCallEnded()">
           <div class="bridge-status">
             {{bridge.status}}
           </div>
-          <div class="requestProgress">
+          <div class="requestProgress" [ngClass]="getBridgeBarClass(bridge.status)">
             <div class="bar"></div>
             <div class="requestItem requestProgress1"></div>
           </div>
         </div>
         <div class="footer-item" *ngIf="isCallEnded()">
-          Zakończ połaczenie
+          <button type="submit" class="outline" routerLink="/">Powrót</button>
         </div>
       </div>
     </div>
